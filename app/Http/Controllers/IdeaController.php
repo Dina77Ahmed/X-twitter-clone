@@ -50,7 +50,7 @@ class IdeaController extends Controller
     //     return view('idea',compact('idea'));
     // }
     public function show(Idea $idea){
-        return view('idea',compact('idea'));
+        return view('idea.show',compact('idea'));
     }
 
     /**
@@ -58,7 +58,7 @@ class IdeaController extends Controller
      */
     public function edit(Idea $idea)
     {
-        return view('edit',compact('idea'));
+        return view('idea.edit',compact('idea'));
     }
 
     /**
