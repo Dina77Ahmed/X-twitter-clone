@@ -1,8 +1,8 @@
 @extends('layout.app')
 @section('content')
 <div class="col-6">
-    <hr>
     <div class="mt-3">
+        @include('layout.shared.success-message')
         <div class="card">
             <div class="px-3 pt-4 pb-2">
                 <div class="d-flex align-items-center justify-content-between">
@@ -37,7 +37,7 @@
                     </p>
                 <div class="d-flex justify-content-between">
                     <div>
-                        <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-heart me-1">
+                        <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-heart text-danger me-1">
                             </span> {{ $idea->likes }} </a>
                     </div>
                     <div>

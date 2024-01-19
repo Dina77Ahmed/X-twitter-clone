@@ -12,10 +12,10 @@ class IdeaController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   
+    {
         // SEE YOU OWN POSTS ALL 
 
-        
+
         // $ideas=Idea::orderBy('created_at','desc')->get();
         // return view('home',compact('ideas'));
     }
@@ -25,20 +25,17 @@ class IdeaController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
      * Store a newly created resource in storage.
      */
-     public function store(IdeaFormRequest $request)
+    public function store(IdeaFormRequest $request)
     {
         // dd($request->except(['_token']));
-        $request->validated();
-        Idea::create([
-            'content'=>$request->content,
-        ]);
-        return redirect(route('home'))->with('success','Idea created Successfully');
+        $validatedData = $request->validated();
+        Idea::create($validatedData);
+        return redirect(route('home'))->with('success', 'Idea created Successfully');
     }
 
     /**
@@ -49,8 +46,9 @@ class IdeaController extends Controller
     //     $idea=Idea::findOrFail($id);
     //     return view('idea',compact('idea'));
     // }
-    public function show(Idea $idea){
-        return view('idea.show',compact('idea'));
+    public function show(Idea $idea)
+    {
+        return view('idea.show', compact('idea'));
     }
 
     /**
@@ -58,20 +56,21 @@ class IdeaController extends Controller
      */
     public function edit(Idea $idea)
     {
-        return view('idea.edit',compact('idea'));
+        return view('idea.edit', compact('idea'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(IdeaFormRequest $request, Idea $idea)
-    {   $validatedData=$request->validated();
+    {
+        $validatedData = $request->validated();
         $idea->update([
-            'content'=>$validatedData['content'],
-            'updated_at'=>now(),
-            'likes'=>0,
+            'content' => $validatedData['content'],
+            'updated_at' => now(),
+            'likes' => 0,
         ]);
-        return redirect(route('home'))->with('success','Idea edit Successfully');
+        return redirect(route('home'))->with('success', 'Idea edit Successfully');
     }
 
     /**
@@ -83,8 +82,9 @@ class IdeaController extends Controller
     //     return redirect(route('home'))->with('success','an idea has been deleted successfully!');
     // }
     // Model binding 
-    public function destroy(Idea $idea){
+    public function destroy(Idea $idea)
+    {
         $idea->delete();
-        return redirect(route('home'))->with('success','an idea has been deleted successfully!');
+        return redirect(route('home'))->with('success', 'an idea has been deleted successfully!');
     }
 }

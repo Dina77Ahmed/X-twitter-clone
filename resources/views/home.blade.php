@@ -3,22 +3,19 @@
 <div class="col-6">
    
    
-    @if($ideas->isEmpty())
+    @if($ideasWithComments->isEmpty())
     <h1 class="text-center">No Results</h1>
     @else
     @include('layout.shared.success-message')
     <h4> Share yours ideas </h4>
     @include('layout.shared.submit-form')
     <hr>
-    @foreach($ideas as $idea)
+    @foreach($ideasWithComments as $idea)
     @include('layout.shared.idea-card')
     @endforeach
-
-   
-    
     
     <div class=" mt-3 " >
-        {{ $ideas->links() }}
+        {{ $ideasWithComments->links() }}
     </div>
     @endif
 </div>

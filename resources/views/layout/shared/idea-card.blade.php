@@ -29,7 +29,7 @@
                 </a>
                 <div class="d-flex justify-content-between">
                     <div>
-                        <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-heart me-1">
+                        <a href="#" class="fw-light nav-link fs-6"> <span class="fas text-danger fa-heart me-1">
                             </span> {{ $idea->likes }} </a>
                     </div>
                     <div>

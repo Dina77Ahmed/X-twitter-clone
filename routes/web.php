@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IdeaController;
 use Illuminate\Support\Facades\Route;
@@ -16,4 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',HomeController::class)->name('home');
+
 Route::resource('ideas', IdeaController::class);
+
+Route::scopeBindings()->group(function(){
+   Route::resource('ideas.comments', CommentController::class); 
+});

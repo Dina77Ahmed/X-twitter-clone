@@ -1,11 +1,15 @@
 <div>
-    <div class="mb-3">
-        <textarea class="fs-6 form-control" rows="1"></textarea>
-    </div>
-    <div>
-        <button class="btn btn-primary btn-sm"> Post Comment </button>
+    <form action="{{ route('ideas.comments.store',$idea) }}" method="POST">
+        @csrf
+        <div class="mb-3">
+            <textarea name='my_comment' class="fs-6 form-control" rows="1"></textarea>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary btn-sm"> Post Comment </button>
+    </form>
     </div>
 
+    @foreach ($idea->comments as $comment)
     <hr>
     <div class="d-flex align-items-start">
         <img style="width:35px" class="me-2 avatar-sm rounded-circle"
@@ -15,18 +19,21 @@
             <div class="d-flex justify-content-between">
                 <h6 class="">Luigi
                 </h6>
-                <small class="fs-6 fw-light text-muted"> 3 hour
-                    ago</small> 
+                 
             </div>
+            
             <p class="fs-6 mt-3 fw-light">
-                and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and
-                Evil)
-                by
-                Cicero, written in 45 BC. This book is a treatise on the theory of ethics,
-                very
-                popular during the Renaissan
+                {{ $comment->my_comment }}
             </p>
+            <div class="d-flex justify-content-between">
+                <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-heart me-1 text-danger">
+                </span> {{ $comment->likes }} </a>
+            <small class="fs-6 fw-light text-muted mb-3 "> {{ $comment->updated_at }}</small>
+            </div>
         </div>
         
     </div>
+    @endforeach
 </div>
+
+

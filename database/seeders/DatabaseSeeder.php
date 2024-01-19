@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Comment;
 use App\Models\Idea;
 use Illuminate\Database\Seeder;
 
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         Idea::factory(10)->create();
+        Comment::factory(10)->create();
     }
 }

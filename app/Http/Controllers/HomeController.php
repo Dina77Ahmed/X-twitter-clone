@@ -9,13 +9,13 @@ class HomeController extends Controller
 {
 //    show general posts of all users
     public function __invoke(){
-        $ideas=Idea::orderBy('updated_at','desc');
+        $ideasWithComments=Idea::with('comments')->orderBy('updated_at','desc');
         
         if(request()->has('search')){
-            $ideas= $ideas->where('content','like','%'.request('search').'%');
+            $ideasWithComments= $ideasWithComments->where('content','like','%'.request('search').'%');
         }
-        $ideas=$ideas->paginate(3);
+        $ideasWithComments=$ideasWithComments->paginate(3);
         
-        return view('home',compact('ideas'));
+        return view('home',compact('ideasWithComments'));
     }
 }
