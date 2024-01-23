@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('my_comment');
             $table->unsignedInteger('comment_likes')->default(0);
             $table->foreignId('idea_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

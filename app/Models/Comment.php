@@ -10,10 +10,14 @@ class Comment extends Model
     use HasFactory;
     protected $fillable=[
         'my_comment',
-        'likes',
+        'comment_likes',
         'idea_id',
+        'user_id'
     ];
     public function idea(){
         return $this->belongsTo(Idea::class);
     }
+    public function user(){
+        return  $this->belongsTo(User::class);
+      }
 }

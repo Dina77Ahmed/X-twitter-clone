@@ -14,18 +14,35 @@
     <div class="d-flex align-items-start">
         <img style="width:35px" class="me-2 avatar-sm rounded-circle"
             src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ $comment->user->name }}"
-            alt="Luigi Avatar">
+            alt="{{ $comment->user->name }}">
             
         <div class="w-100">
+        <div class="d-flex align-items-center justify-content-between"> 
             <div class="d-flex justify-content-between">
                 <h6 class="">{{ $comment->user->name }}
                 </h6>
                  
             </div>
-            
-            <p class="fs-6 mt-3 fw-light">
-                {{ $comment->my_comment }}
-            </p>
+            <div class="d-flex justify-content-between">
+                @if (auth()->check() && auth()->user()->id == ($comment->user_id))
+                    <form method="POST" action={{ route('ideas.comments.destroy',['idea' => $idea->id, 'comment' => $comment->id]) }}>
+                        @csrf
+                        @method('Delete')
+                        <button class="btn btn-danger me-2 btn-sm ">
+                            X
+                        </button>
+                    </form>
+                    <a href="{{ route('ideas.comments.edit',['idea' => $idea->id, 'comment' => $comment->id]) }}" class="btn btn-success   btn-sm">
+                        Edit
+                    </a>
+                    @endif
+            </div>
+        </div>        
+            <a class="fw-light nav-link fs-6" href="{{ route("ideas.comments.edit",['idea' => $idea->id, 'comment' => $comment->id]) }}">
+                <p class="fs-6 mt-3 fw-light">
+                    {{ $comment->my_comment }}
+                </p>
+            </a>
             <div class="d-flex justify-content-between">
                 <a href="#" class="fw-light nav-link fs-6">
                      <span class="fas fa-heart me-1 text-danger ">
@@ -37,5 +54,6 @@
     </div>
     @endforeach
 </div>
+
 
 

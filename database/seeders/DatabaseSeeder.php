@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Comment;
 use App\Models\Idea;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,7 +22,9 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        Idea::factory(10)->create();
+        // User::factory(10)->create();
+        // Idea::factory(10)->create();
         Comment::factory(10)->create();
+        
     }
 }

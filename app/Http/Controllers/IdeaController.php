@@ -34,7 +34,9 @@ class IdeaController extends Controller
     {
         // dd($request->except(['_token']));
         $validatedData = $request->validated();
+        $validatedData['user_id']=auth()->id();
         Idea::create($validatedData);
+
         return redirect(route('home'))->with('success', 'Idea created Successfully');
     }
 
@@ -65,6 +67,12 @@ class IdeaController extends Controller
     public function update(IdeaFormRequest $request, Idea $idea)
     {
         $validatedData = $request->validated();
+
+            if($validatedData['content']==$idea->content){
+                
+                return redirect(route('home'))->with('waring', 'Idea not changed');
+            }
+
         $idea->update([
             'content' => $validatedData['content'],
             'updated_at' => now(),
