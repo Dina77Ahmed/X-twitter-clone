@@ -11,18 +11,18 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Idea $idea)
-    {
-        //
-    }
+    // public function index(Idea $idea)
+    // {
+    //     //
+    // }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(Idea $idea)
-    {
-        //
-    }
+    // /**
+    //  * Show the form for creating a new resource.
+    //  */
+    // public function create(Idea $idea)
+    // {
+    //     //
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -47,10 +47,10 @@ class CommentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Idea $idea, Comment $comment)
-    {
-        //
-    }
+    // public function show(Idea $idea, Comment $comment)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.

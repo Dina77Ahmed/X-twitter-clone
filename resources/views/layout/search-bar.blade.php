@@ -5,8 +5,8 @@
     <div class="card-body">
         <form action={{ route('home') }} method="GET">
             @csrf
-            <input placeholder="...
-            " class="form-control w-100" type="text"
+            <input placeholder="... 
+            " class="form-control w-100" type="text" value="{{ request("search") }}"
             id="search" name="search">
 
             <button class="btn btn-dark mt-2" type="submit"> Search</button>

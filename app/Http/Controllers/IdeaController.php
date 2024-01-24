@@ -11,21 +11,19 @@ class IdeaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        // SEE YOU OWN POSTS ALL 
+    // public function index()
+    // {
+    //     // SEE YOU OWN POSTS ALL 
 
 
-        // $ideas=Idea::orderBy('created_at','desc')->get();
-        // return view('home',compact('ideas'));
-    }
+    // }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-    }
+    // public function create()
+    // {
+    // }
 
     /**
      * Store a newly created resource in storage.

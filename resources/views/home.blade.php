@@ -14,12 +14,18 @@ Home
     @include('layout.shared.submit-form')
     <hr>
     @endauth
-    @foreach($ideasWithComments as $idea)
+
+    {{-- @forelse($ideasWithComments as $idea)
+    @include('layout.shared.idea-card')
+    @empty
+    <div>Nothing to show</div>
+    @endforelse --}}
+    @foreach ($ideasWithComments as $idea)
     @include('layout.shared.idea-card')
     @endforeach
     
     <div class=" mt-3 " >
-        {{ $ideasWithComments->links() }}
+        {{ $ideasWithComments->withQueryString()->links() }}
     </div>
     @endif
 </div>
