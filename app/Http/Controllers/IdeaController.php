@@ -73,7 +73,7 @@ class IdeaController extends Controller
 
         $idea->update([
             'content' => $validatedData['content'],
-            'updated_at' => now(),
+            // 'updated_at' => now(),
             'likes' => 0,
         ]);
         return redirect(route('home'))->with('success', 'Idea edit Successfully');

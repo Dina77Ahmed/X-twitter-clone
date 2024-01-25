@@ -36,7 +36,7 @@ Login
 
         <div class="form-group">
             <label for="remember-me" class="text-dark"></label><br>
-            <input type="submit" name="submit" class="btn btn-dark btn-md" value="submit">
+            <input type="submit" name="submit" class="btn btn-dark btn-md" value="login">
         </div>
         <div class="text-right mt-2">
             <a href="{{ route('register') }}" class="text-dark">Register here</a>
@@ -44,4 +44,4 @@ Login
     </form>
 </div>
 
-@endsection
+@endsection 

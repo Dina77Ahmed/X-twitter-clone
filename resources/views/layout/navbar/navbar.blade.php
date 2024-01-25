@@ -25,7 +25,7 @@
                 <form action="{{ route('logout') }}" method='POST'>
                     @csrf
                     <li class="nav-item">
-                        <button class="btn btn-danger btn-sm text-white mt-1 " href="/profile">Logout</button>
+                        <button class="btn btn-danger btn-sm text-white mt-1 ">Logout</button>
                     </li>
                 </form>
                    @endauth

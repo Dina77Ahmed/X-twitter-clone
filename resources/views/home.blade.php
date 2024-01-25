@@ -16,12 +16,12 @@ Home
     @endauth
 
     {{-- @forelse($ideasWithComments as $idea)
-    @include('layout.shared.idea-card')
+    @include('idea.idea-card')
     @empty
     <div>Nothing to show</div>
     @endforelse --}}
     @foreach ($ideasWithComments as $idea)
-    @include('layout.shared.idea-card')
+    @include('idea.idea-card')
     @endforeach
     
     <div class=" mt-3 " >

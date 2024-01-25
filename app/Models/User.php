@@ -20,6 +20,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'bio',
+        'follow',
+        'image',
         'password',
     ];
 
@@ -44,10 +47,10 @@ class User extends Authenticatable
     ];
 
     public function ideas(){
-        $this->hasMany(Idea::class);
+       return $this->hasMany(Idea::class);
     }
     public function comments(){
-        $this->hasMany(Comment::class);
+       return $this->hasMany(Comment::class);
     }
 }
 

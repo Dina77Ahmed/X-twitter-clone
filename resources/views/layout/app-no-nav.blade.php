@@ -1,7 +1,7 @@
-@include('layout.head')
+@include('layout.shared.head')
 <body>
    
-    @include('layout.navbar')
+    @include('layout.navbar.navbar')
         <div class="container py-4">
             <div class="row justify-content-center">
             @yield('content')

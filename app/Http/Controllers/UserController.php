@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserFormRequest;
 use App\Models\Idea;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class UserController extends Controller
         where('user_id','=',auth()->user()->id)
         ->get();
 
-        return view('layout.profile',compact('userIdeas'));
+        return view('user.profile',compact('userIdeas'));
     }
 
     // /**
@@ -43,28 +44,40 @@ class UserController extends Controller
      */
     public function show(User $user)
     {   
-        $userIdeas=Idea::with('comments')->
-        orderBy('created_at','desc')->
-        where('user_id','=',auth()->user()->id)
-        ->get();
-        
-        return view('layout.profile',['user'=>$user,'userIdeas'=>$userIdeas]);
+        $editing=true;
+
+        // $userIdeas=Idea::with('comments')->
+        // orderBy('created_at','desc')->
+        // where('user_id','=',$user->id)
+        // ->get();
+        $userIdeas=$user->ideas()->paginate(2);
+
+        return view('user.profile',compact('user','userIdeas'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return view('user.edit',compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserFormRequest $request, User $user)
     {
-        //
+        $validatedData=$request->validated();
+
+        if ($validatedData['name']===$user->name && $validatedData['bio']===$user->bio)
+        {
+            return redirect(route('home'))->with('waring', 'you do not update your data');
+        }
+
+        $user->update($validatedData);
+
+        return redirect(route('home'))->with('success', 'your data updated  Successfully');
     }
 
     /**
