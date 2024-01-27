@@ -5,7 +5,7 @@
             <textarea name='my_comment' class="fs-6 form-control" rows="1"></textarea>
         </div>
         <div>
-            <button type="submit" class="btn btn-primary btn-sm"> Post Comment </button>
+            <button type="submit" class="btn btn-outline-secondary  btn-sm"> Post Comment </button>
     </form>
     </div>
 
@@ -32,7 +32,7 @@
                             X
                         </button>
                     </form>
-                    <a href="{{ route('ideas.comments.edit',['idea' => $idea->id, 'comment' => $comment->id]) }}" class="btn btn-success   btn-sm">
+                    <a href="{{ route('ideas.comments.edit',['idea' => $idea->id, 'comment' => $comment->id]) }}" class="btn btn-primary    btn-sm">
                         Edit
                     </a>
                     @endif

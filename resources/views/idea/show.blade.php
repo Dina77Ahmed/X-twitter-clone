@@ -27,7 +27,7 @@ Show
                                 X
                             </button>
                         </form>
-                        <a href={{ route('ideas.edit',$idea->id) }} class="btn btn-success btn-sm mt-2">
+                        <a href={{ route('ideas.edit',$idea->id) }} class="btn btn-primary btn-sm mt-2">
                             Edit
                         </a>
                         @endif

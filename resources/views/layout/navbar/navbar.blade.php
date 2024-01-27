@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg bg-dark border-bottom border-bottom-dark ticky-top bg-body-tertiary"
+<nav class="navbar navbar-expand-lg bg-dark border-bottom border-bottom-dark ticky-top bg-body-tertiary "
+{{-- fixed-top --}}
         data-bs-theme="dark">
         <div class="container">
             <a class="navbar-brand fw-light" href={{ route('home') }}><span class="fas fa-brain me-1"> </span>{{ config('app.name') }}</a>

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserFormRequest;
 use App\Models\Idea;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class UserController extends Controller
 {
@@ -67,10 +68,19 @@ class UserController extends Controller
      * Update the specified resource in storage.
      */
     public function update(UserFormRequest $request, User $user)
-    {
+    {   
         $validatedData=$request->validated();
 
-        if ($validatedData['name']===$user->name && $validatedData['bio']===$user->bio)
+        // Check if there is a new image uploaded
+        if ($request->hasFile('image'))
+        { 
+            $image = $request->file('image')->store(options: 'profile');
+            $validatedData['image'] =$image;
+            //delete old image
+            Storage::disk('profile')->delete($user->image);
+        }
+
+        if ($validatedData['name']===$user->name && $validatedData['bio']===$user->bio &&  $validatedData['image']===$user->image)
         {
             return redirect(route('home'))->with('waring', 'you do not update your data');
         }

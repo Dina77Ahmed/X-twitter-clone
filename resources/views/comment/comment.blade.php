@@ -5,17 +5,14 @@
             <textarea name='my_comment' class="fs-6 form-control" rows="1"></textarea>
         </div>
         <div>
-            <button type="submit" class="btn btn-primary btn-sm"> Post Comment </button>
+            <button type="submit" class="btn btn-outline-secondary btn-sm"> Post Comment </button>
     </form>
     </div>
 
     @foreach ($idea->comments as $comment)
     <hr>
     <div class="d-flex align-items-start">
-        <img style="width:35px" class="me-2 avatar-sm rounded-circle"
-            src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ $comment->user->name }}"
-            alt="Luigi Avatar">
-            
+        <img style="width:150px" class="me-3 avatar-sm rounded-circle" src="{{ asset('storage/profile/' . $comment->user->image) }}" alt="{{ $comment->user->name }}"> 
         <div class="w-100">
             <div class="d-flex justify-content-between">
                 <h6 class="">{{ $comment->user->name }}

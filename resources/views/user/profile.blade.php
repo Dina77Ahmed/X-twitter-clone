@@ -1,6 +1,7 @@
 @section('title')
 Profile
 @endsection
+
 @extends('layout.app')
 
 @section('content')
@@ -9,32 +10,32 @@ Profile
         <div class="px-3 pt-4 pb-2">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center">
-                    <img style="width:150px" class="me-3 avatar-sm rounded-circle"
-                        src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ $user->name }}" alt="Mario Avatar">
+                    <img style="width:150px;height:150px" class="me-3 avatar-sm rounded-circle"
+                            src="{{ asset('storage/profile/' . $user->image) }}" alt="{{ $user->name }}">
                     <div>
                         <h3 class="card-title mb-0">
                             <a href="#">
                             {{ $user->name }}
                             </a>
                         </h3>
-                        <span class="fs-6 text-muted">
-                            &#64;{{$user->name }}
-                        </span>
+                    <span class="fs-6 text-muted">
+                        &#64;{{$user->name }}
+                    </span>
                     </div>
                 </div>
                 <div>
                     @if ( auth()->user()->id == ($user->id))
-                    <a href="{{ route('users.edit',$user->id) }}" class="btn btn-success btn-sm mt-2">
+                    <a href="{{ route('users.edit',$user->id) }}" class="btn btn-primary btn-sm mt-2 rounded-circle">
                         Edit
                     </a>
                     @endif
                 </div>
             </div>
             <div class="px-2 mt-4">
+                @if($user->bio)
                 <h5 class="fs-5"> Bio : </h5>
-                <p class="fs-6 fw-light">
-                    {{ $user->bio }}
-                </p>
+                <p class="fs-6 fw-light">{{ $user->bio }}</p>
+                @endif
                 <div class="d-flex justify-content-start">
                     <a href="#" class="fw-light nav-link fs-6 me-3">
                          <span class="fas fa-user me-1">

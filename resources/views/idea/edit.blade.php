@@ -19,7 +19,7 @@ Edit | Idea
         </span>
         @enderror
         </div>
-        <button class="btn btn-success btn-sm" type="submit"> update </button>
+        <button class="btn btn-primary  btn-sm" type="submit"> update </button>
         </form>
       
 </div>

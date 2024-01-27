@@ -7,14 +7,19 @@ User | Edit
 @section('content')
 <div class="col-6">
     <div class="card">
-        <form action="{{ route('users.update',$user->id) }}" method="POST">
+        <form enctype="multipart/form-data" action="{{ route('users.update',$user->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="px-3 pt-4 pb-2">
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center">
-                        <img style="width:150px" class="me-3 avatar-sm rounded-circle"
-                            src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ $user->name }}" alt="Mario Avatar">
+                        <img style="width:150px;height:150px" class="me-3 avatar-sm rounded-circle"
+                            src="{{ asset('storage/profile/' . $user->image) }}" alt="{{ $user->name }}">
+                            @error('image')
+                            <span class="fs-6 text-danger">
+                                {{ $message }}
+                            </span>
+                            @enderror
                         <div>
                             <h3 class="card-title mb-0">
                                 <input type="text" name="name" value="{{ $user->name }}" class="form-control">
@@ -31,18 +36,20 @@ User | Edit
                     </div>
                     <div>
                         {{-- @if ( auth()->user()->id == ($user->id))
-                        <a href="{{ route('users.edit',$user->id) }}" class="btn btn-success btn-sm mt-2">
+                        <a href="{{ route('users.edit',$user->id) }}" class="btn btn-primary  btn-sm mt-2">
                             Edit
                         </a>
                         @endif --}}
                     </div>
                 </div>
                 <div class="px-2 mt-4">
+                    <div class="mb-3">
+                        <label for="image-cover">Profile Image :</label>
+                        <input type="file" name="image" id="image-cover" class="form-control">
+                       </div>
                     <h5 class="fs-5"> Bio : </h5>
                     <div class="fs-6 fw-light">
-                        <textarea class="form-control" id="idea" name="bio" rows="3">
-                            {{ $user->bio }}
-                        </textarea>
+                        <textarea class="form-control" id="idea" name="bio" rows="3">{{ $user->bio }}</textarea>
                         @error('bio')
                         <span class="fs-6 text-danger">
                             {{ $message }}
@@ -70,7 +77,7 @@ User | Edit
                    </div>
                    @endif --}}
                    
-                   <button class="btn btn-success btn-sm" type="submit"> update </button>
+                   <button class="btn btn-primary  btn-sm" type="submit"> update </button>
     
                 </div>
             </div>

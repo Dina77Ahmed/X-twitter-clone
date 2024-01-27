@@ -19,13 +19,22 @@ class AuthController extends Controller
 
         $validatedData= $request->validated();
 
-        User::create([
+       $user= User::create([
             'name'=>$validatedData['name'],
             'email'=>$validatedData['email'],
             'password'=>Hash::make($validatedData['password']),
         ]);
+        // Authenticate the user
+        auth()->login($user);
 
-        return redirect(route('home'))->with('success', 'Registration successful. You are now logged in.');
+        // Retrieve authenticated user data
+        $authenticatedUser = auth()->user();
+
+        // Redirect with success message and user data
+        return redirect(route('home'))->with([
+            'success' => 'Registration successful. You are now logged in.',
+            'user' => $authenticatedUser,
+        ]);
     }
 
     public function login()

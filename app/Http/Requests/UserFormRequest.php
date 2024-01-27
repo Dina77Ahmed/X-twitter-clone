@@ -22,7 +22,7 @@ class UserFormRequest extends FormRequest
      */
     public function rules(): array
     {   $userId=$this->route('user');
-        return [
+        $rules= [
             'name' => [
                 'required',
                 'max:50',
@@ -30,11 +30,15 @@ class UserFormRequest extends FormRequest
                 Rule::unique('users', 'name')->ignore($userId),
             ],
             'bio' => [
-                'required',
+                // 'required',
                 'max:149',
-                'min:3',
+                // 'min:3',
                 Rule::unique('users', 'bio')->ignore($userId),
             ],
         ];
+        if(in_array($this->method(),['PUT'])){
+            $rules['image']= ['mimes:png,jpg,jpeg','max:5048'];
+          }
+          return $rules;
     }
 }
