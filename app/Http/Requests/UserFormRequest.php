@@ -23,19 +23,20 @@ class UserFormRequest extends FormRequest
     public function rules(): array
     {   $userId=$this->route('user');
         $rules= [
+            
             'name' => [
                 'required',
                 'max:50',
                 'min:2',
                 Rule::unique('users', 'name')->ignore($userId),
             ],
+
             'bio' => [
-                // 'required',
                 'max:149',
-                // 'min:3',
                 Rule::unique('users', 'bio')->ignore($userId),
             ],
         ];
+        
         if(in_array($this->method(),['PUT'])){
             $rules['image']= ['mimes:png,jpg,jpeg','max:5048'];
           }

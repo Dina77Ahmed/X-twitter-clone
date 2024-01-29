@@ -12,7 +12,9 @@
     @foreach ($idea->comments as $comment)
     <hr>
     <div class="d-flex align-items-start">
-        <img style="width:150px" class="me-3 avatar-sm rounded-circle" src="{{ asset('storage/profile/' . $comment->user->image) }}" alt="{{ $comment->user->name }}"> 
+        <img  style="width:35px" class="me-2 avatar-sm rounded-circle"
+            src="{{ asset('storage/profile/' . $comment->user->image) }}" 
+            alt="{{ $comment->user->name }}">
         <div class="w-100">
             <div class="d-flex justify-content-between">
                 <h6 class="">{{ $comment->user->name }}

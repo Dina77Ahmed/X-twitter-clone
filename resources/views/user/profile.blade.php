@@ -9,10 +9,12 @@ Profile
     <div class="card">
         <div class="px-3 pt-4 pb-2">
             <div class="d-flex align-items-center justify-content-between">
-                <div class="d-flex align-items-center">
-                    <img style="width:150px;height:150px" class="me-3 avatar-sm rounded-circle"
-                            src="{{ asset('storage/profile/' . $user->image) }}" alt="{{ $user->name }}">
-                    <div>
+                {{--  --}}
+    <div class="d-flex align-items-center">
+        <img  class="me-3 avatar-sm rounded-circle" style="width:150px;height:150px"
+            src="{{ asset('storage/profile/' . $user->image) }}" 
+            alt="{{ $user->name }}">
+    <div>
                         <h3 class="card-title mb-0">
                             <a href="#">
                             {{ $user->name }}

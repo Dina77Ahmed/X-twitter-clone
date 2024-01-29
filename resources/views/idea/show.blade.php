@@ -10,8 +10,9 @@ Show
             <div class="px-3 pt-4 pb-2">
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center">
-                        <img style="width:50px" class="me-2 avatar-sm rounded-circle"
-                            src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ $idea->user->name }}" alt="{{ $idea->user->name }}">
+                        <img  class="me-3 avatar-sm rounded-circle" style="width:150px;height:150px"
+            src="{{ asset('storage/profile/' . $idea->user->image) }}" 
+            alt="{{ $idea->user->name }}">
                         <div>
                             <h5 class="card-title mb-0">
                                 <a href="{{ route('users.show',$idea->user_id) }}"> {{ $idea->user->name }}</a>

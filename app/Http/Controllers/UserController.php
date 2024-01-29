@@ -68,24 +68,25 @@ class UserController extends Controller
      * Update the specified resource in storage.
      */
     public function update(UserFormRequest $request, User $user)
-    {   
+    {  
         $validatedData=$request->validated();
 
         // Check if there is a new image uploaded
         if ($request->hasFile('image'))
         { 
-            $image = $request->file('image')->store(options: 'profile');
+            $image = $request->file('image')->store( options: 'profile');
             $validatedData['image'] =$image;
             //delete old image
             Storage::disk('profile')->delete($user->image);
         }
+        
+        $user->update($validatedData);
 
         if ($validatedData['name']===$user->name && $validatedData['bio']===$user->bio &&  $validatedData['image']===$user->image)
         {
             return redirect(route('home'))->with('waring', 'you do not update your data');
         }
 
-        $user->update($validatedData);
 
         return redirect(route('home'))->with('success', 'your data updated  Successfully');
     }
