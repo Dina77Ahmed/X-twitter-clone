@@ -52,6 +52,8 @@ Route::resource('users', UserController::class)
    ->except(['create', 'store']);
 
 // Follow Routes
-
 Route::post('/users/{user}/follow',[UserController::class,'follow'])->name('user.follow');
 Route::post('/users/{user}/unfollow',[UserController::class,'unfollow'])->name('user.unfollow');
+
+// feed Route
+Route::get('user/feed',[UserController::class,'feed'])->name('feed');

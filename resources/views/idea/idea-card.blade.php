@@ -36,10 +36,15 @@
                     </div>
                     <div>
                         <span class="fs-6 fw-light text-muted"> <span class="fas fa-clock"> </span>
-                            {{ $idea->updated_at }} </span>
+                            {{ $idea->updated_at->diffForHumans() }} </span>
                     </div>
                 </div>
+                @if($idea->comments->isEmpty())
+                <hr>
+                <div class="d-flex align-items-start">No comments</div>
+                @else
                 @include('comment.comment')
+                @endif
             </div>
         </div>
     </div>

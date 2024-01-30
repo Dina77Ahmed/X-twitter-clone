@@ -46,7 +46,7 @@
                 <a href="#" class="fw-light nav-link fs-6">
                      <span class="fas fa-heart me-1 text-danger ">
                 </span> {{ $comment->comment_likes }} </a>
-            <small class="fs-6 fw-light text-muted mb-3 "> {{ $comment->updated_at }}</small>
+            <small class="fs-6 fw-light text-muted mb-3 "> {{ $comment->updated_at->diffForHumans() }}</small>
             </div>
         </div>
         

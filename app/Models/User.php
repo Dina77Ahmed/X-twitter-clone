@@ -55,9 +55,9 @@ class User extends Authenticatable
     }
 
     // a user can have many followers
-    // public function followers(){
-    //     return $this->belongsToMany(User::class,'followers','following_id','follower_id')->withTimestamps();
-    // }
+    public function followers(){
+        return $this->belongsToMany(User::class,'followers','following_id','follower_id')->withTimestamps();
+    }
 
     public function following(){
         return $this->belongsToMany(User::class,'followers','follower_id','following_id')->withTimestamps();;

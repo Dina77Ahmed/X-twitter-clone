@@ -24,22 +24,6 @@ class UserController extends Controller
         return view('user.profile',compact('userIdeas'));
     }
 
-    // /**
-    //  * Show the form for creating a new resource.
-    //  */
-    // public function create()
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Store a newly created resource in storage.
-    //  */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
-
     /**
      * Display the specified resource.
      */
@@ -113,6 +97,15 @@ class UserController extends Controller
         return redirect(route('users.show',$user))->with('success','you unfollow '.$user->name.' successfully');
     }
 
-    
+    public function feed(){
+
+        $followersID=auth()->user()->following()->pluck('following_id');
+       
+        $ideasWithComments=Idea::whereIn('user_id',$followersID)->latest();
+        // dd($followersID);  
+              $ideasWithComments=$ideasWithComments->paginate(3);
+        
+        return view('user.feed',compact('ideasWithComments'));
+    }
 
 }
