@@ -80,14 +80,14 @@ class UserController extends Controller
             Storage::disk('profile')->delete($user->image);
         }
         
-        $user->update($validatedData);
-
+        
         if ($validatedData['name']===$user->name && $validatedData['bio']===$user->bio &&  $validatedData['image']===$user->image)
         {
             return redirect(route('home'))->with('waring', 'you do not update your data');
         }
-
-
+        
+        $user->update($validatedData);
+        
         return redirect(route('home'))->with('success', 'your data updated  Successfully');
     }
 
@@ -98,4 +98,21 @@ class UserController extends Controller
     {
         //
     }
+
+    public function follow(User $user){
+        $follower=auth()->user();
+        $follower->following()->attach($user);
+        
+        return redirect(route('users.show',$user))->with('success','you follow '.$user->name.' successfully');
+    }
+
+    public function unfollow(User $user){
+        $follower=auth()->user();
+        $follower->following()->detach($user);
+        
+        return redirect(route('users.show',$user))->with('success','you unfollow '.$user->name.' successfully');
+    }
+
+    
+
 }

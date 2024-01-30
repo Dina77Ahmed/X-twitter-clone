@@ -50,3 +50,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::resource('users', UserController::class)
    ->middleware('auth')
    ->except(['create', 'store']);
+
+// Follow Routes
+
+Route::post('/users/{user}/follow',[UserController::class,'follow'])->name('user.follow');
+Route::post('/users/{user}/unfollow',[UserController::class,'unfollow'])->name('user.unfollow');
