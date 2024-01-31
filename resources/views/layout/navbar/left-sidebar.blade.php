@@ -12,7 +12,10 @@
                             
                         </ul>
                     </div>
+                    @auth
+                    
                     <div class="card-footer text-center py-2">
                         <a class="btn btn-link btn-sm" href="{{ route('users.show',auth()->user()->id) }}">View Profile </a>
                     </div>
+                    @endauth
                 </div>

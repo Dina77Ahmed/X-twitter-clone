@@ -12,7 +12,7 @@ class HomeController extends Controller
 //    show general posts of all users
     public function __invoke(){
 
-        $ideasWithComments=Idea::with('comments')->orderBy('updated_at','desc');
+        $ideasWithComments=Idea::with('comments','comments.user')->orderBy('updated_at','desc');
         
         if(request()->has('search')){
             $ideasWithComments= $ideasWithComments->where('content','like','%'.request('search','').'%');
@@ -20,7 +20,7 @@ class HomeController extends Controller
             //     return redirect(route('home'))->with('waring', 'Idea not found');
             // }
         }
-        $ideasWithComments=$ideasWithComments->paginate(3);
+        $ideasWithComments=$ideasWithComments->paginate(5);
         
         return view('home',compact('ideasWithComments'));
     }

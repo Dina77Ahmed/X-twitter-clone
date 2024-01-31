@@ -1,8 +1,8 @@
 @include('layout.shared.head')
 <body>
     @include('layout.navbar.navbar')
-    <div class="container py-4">
-        <div class="row">
+    <div class="container py-4 ">
+        <div class="row mt-5">
             <div class="col-3">
                 @include('layout.navbar.left-sidebar')
             </div>

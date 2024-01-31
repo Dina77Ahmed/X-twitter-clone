@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-dark border-bottom border-bottom-dark ticky-top bg-body-tertiary "
+<nav class="navbar navbar-expand-lg bg-dark border-bottom border-bottom-dark ticky-top bg-body-tertiary fixed-top "
 {{-- fixed-top --}}
         data-bs-theme="dark">
         <div class="container">
@@ -12,16 +12,16 @@
 
                     @guest
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('login') }}">Login</a>
+                        <a class="nav-link {{ Route::is('login') ? 'active':''  }}" aria-current="page" href="{{ route('login') }}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">Register</a>
+                        <a class="nav-link {{ Route::is('register') ? 'active':''  }}" href="{{ route('register') }}">Register</a>
                     </li>
                     @endguest
                     
                    @auth
                    <li class="nav-item">
-                    <a class="nav-link " href="{{ route('users.show',auth()->user()->id) }}">{{ auth()->user()->name }}</a>
+                    <a class="nav-link {{ Route::is('users.show') ? 'active':'' }}" href="{{ route('users.show',auth()->user()->id) }}">{{ auth()->user()->name }}</a>
                 </li>
                 <form action="{{ route('logout') }}" method='POST'>
                     @csrf

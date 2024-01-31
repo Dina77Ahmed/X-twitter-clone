@@ -50,10 +50,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::resource('users', UserController::class)
    ->middleware('auth')
    ->except(['create', 'store']);
-
+// Route::get('users/{user}',[UserController::class, 'show'])->middleware('auth');
 // Follow Routes
 Route::post('/users/{user}/follow',[UserController::class,'follow'])->name('user.follow');
 Route::post('/users/{user}/unfollow',[UserController::class,'unfollow'])->name('user.unfollow');
 
 // feed Route
-Route::get('user/feed',[UserController::class,'feed'])->name('feed');
+Route::get('user/feed',[UserController::class,'feed'])
+->middleware('auth')->name('feed');

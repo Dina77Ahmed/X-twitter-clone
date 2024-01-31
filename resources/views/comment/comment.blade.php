@@ -5,12 +5,15 @@
             <textarea name='my_comment' class="fs-6 form-control" rows="1"></textarea>
         </div>
         <div>
-            <button type="submit" class="btn btn-outline-secondary btn-sm"> Post Comment </button>
+            <button type="submit" class="btn btn-secondary btn-sm"> Post Comment </button>
     </form>
     </div>
 
-    @foreach ($idea->comments as $comment)
     <hr>
+    @if($idea->comments->isEmpty())
+    <div class="text-center mt-4">No Comments Found</div>
+    @else
+    @foreach ($idea->comments as $comment)
     <div class="d-flex align-items-start">
         <img  style="width:35px" class="me-2 avatar-sm rounded-circle"
             src="{{ asset('storage/profile/' . $comment->user->image) }}" 
@@ -35,6 +38,7 @@
         
     </div>
     @endforeach
+    @endif
 </div>
 
 

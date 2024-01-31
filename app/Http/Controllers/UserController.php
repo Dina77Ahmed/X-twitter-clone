@@ -29,13 +29,14 @@ class UserController extends Controller
      */
     public function show(User $user)
     {   
-        $editing=true;
+
 
         // $userIdeas=Idea::with('comments')->
         // orderBy('created_at','desc')->
         // where('user_id','=',$user->id)
         // ->get();
-        $userIdeas=$user->ideas()->paginate(2);
+        $userIdeas=$user->ideas()->with('comments')->orderBy('created_at','desc')
+        ->paginate(2);
 
         return view('user.profile',compact('user','userIdeas'));
     }
@@ -62,12 +63,6 @@ class UserController extends Controller
             $validatedData['image'] =$image;
             //delete old image
             Storage::disk('profile')->delete($user->image);
-        }
-        
-        
-        if ($validatedData['name']===$user->name && $validatedData['bio']===$user->bio &&  $validatedData['image']===$user->image)
-        {
-            return redirect(route('home'))->with('waring', 'you do not update your data');
         }
         
         $user->update($validatedData);

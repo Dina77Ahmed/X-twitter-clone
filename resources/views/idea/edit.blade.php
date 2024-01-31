@@ -10,9 +10,7 @@ Edit | Idea
         @csrf
         @method('PUT')
         <div class="mb-3">   
-        <textarea class="form-control" id="idea" name="content" rows="3">
-            {{ $idea->content }}
-        </textarea>
+        <textarea class="form-control" id="idea" name="content" rows="3">{{ $idea->content }}</textarea>
         @error('content')
         <span class="fs-6 text-danger">
             {{ $message }}

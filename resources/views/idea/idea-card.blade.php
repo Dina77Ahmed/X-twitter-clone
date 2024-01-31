@@ -25,7 +25,7 @@
         
             <div class="card-body">
                 <a href={{ route('ideas.show',$idea->id) }} class="fw-light nav-link fs-6">
-                    <p class="fs-6 fw-light text-muted">
+                    <p class="fs-6 fw-light ">
                         {{ $idea->content }}
                     </p>
                 </a>
@@ -39,12 +39,7 @@
                             {{ $idea->updated_at->diffForHumans() }} </span>
                     </div>
                 </div>
-                @if($idea->comments->isEmpty())
-                <hr>
-                <div class="d-flex align-items-start">No comments</div>
-                @else
                 @include('comment.comment')
-                @endif
             </div>
         </div>
     </div>
