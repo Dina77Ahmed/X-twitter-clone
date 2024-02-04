@@ -41,7 +41,7 @@ class CommentController extends Controller
             //     $validatedData,
         // ]);
 
-        return redirect()->route('ideas.show',$idea)->with('success','Comment created successfully');
+        return redirect()->route('ideas.show',$idea)->with('success','Great! You Add New Comment');
     }
 
     /**

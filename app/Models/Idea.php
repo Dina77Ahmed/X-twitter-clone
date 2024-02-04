@@ -10,7 +10,6 @@ class Idea extends Model
     use HasFactory;
     protected $fillable=[
         'content',
-        'likes',
         'user_id',
     ];
 
@@ -20,4 +19,10 @@ class Idea extends Model
     public function user(){
       return  $this->belongsTo(User::class);
     }
+// the users who love certain idea
+    public function like(){
+      return $this->belongsToMany(User::class)->withTimestamps();
+  }
+
+  
 }

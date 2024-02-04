@@ -5,7 +5,7 @@ Home
 @section('content')
 <div class="col-6">
     @if($ideasWithComments->isEmpty())
-    <h1 class="text-center">No Results</h1>
+    <h3 class="text-center">No Results Found ❌</h3>
     @else
     @include('layout.shared.success-message')
     @include('layout.shared.waring-message')

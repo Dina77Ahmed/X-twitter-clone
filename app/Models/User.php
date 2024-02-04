@@ -67,5 +67,13 @@ class User extends Authenticatable
 
         return $this->following()->where('following_id',$user->id)->exists();
     }
+    // this user love all those ideas return them
+    public function like(){
+        return $this->belongsToMany(Idea::class)->withTimestamps();
+    }
+    public function is_like(Idea $idea){
+
+        return $this->like()->where('idea_id',$idea->id)->exists() ;
+    }
 }
 

@@ -58,3 +58,24 @@ Route::post('/users/{user}/unfollow',[UserController::class,'unfollow'])->name('
 // feed Route
 Route::get('user/feed',[UserController::class,'feed'])
 ->middleware('auth')->name('feed');
+
+
+// love Route
+Route::middleware('auth')->group(function(){
+   Route::post('idea/{idea}/like',[IdeaController::class, 'like'])->name('idea.like');
+   Route::post('idea/{idea}/dislike',[IdeaController::class, 'dislike'])->name('idea.dislike');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+

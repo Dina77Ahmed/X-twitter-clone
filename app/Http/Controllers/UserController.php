@@ -36,7 +36,7 @@ class UserController extends Controller
         // where('user_id','=',$user->id)
         // ->get();
         $userIdeas=$user->ideas()->with('comments')->orderBy('created_at','desc')
-        ->paginate(2);
+        ->paginate(3);
 
         return view('user.profile',compact('user','userIdeas'));
     }
@@ -82,7 +82,7 @@ class UserController extends Controller
         $follower=auth()->user();
         $follower->following()->attach($user);
         
-        return redirect(route('users.show',$user))->with('success','you follow '.$user->name.' successfully');
+        return redirect(route('users.show',$user))->with('success','Great! You Follow '.$user->name.' Now');
     }
 
     public function unfollow(User $user){

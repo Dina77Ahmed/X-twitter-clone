@@ -4,30 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\IdeaFormRequest;
 use App\Models\Idea;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class IdeaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    // public function index()
-    // {
-    //     // SEE YOU OWN POSTS ALL 
 
-
-    // }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    // public function create()
-    // {
-    // }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(IdeaFormRequest $request)
     {
         // dd($request->except(['_token']));
@@ -35,17 +17,9 @@ class IdeaController extends Controller
         $validatedData['user_id']=auth()->id();
         Idea::create($validatedData);
 
-        return redirect(route('home'))->with('success', 'Idea created Successfully');
+        return redirect(route('home'))->with('success', 'Great! You Share New Idea Now');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    // public function show(string $id)
-    // {
-    //     $idea=Idea::findOrFail($id);
-    //     return view('idea',compact('idea'));
-    // }
     public function show(Idea $idea)
     {
         return view('idea.show', compact('idea'));
@@ -74,23 +48,30 @@ class IdeaController extends Controller
         $idea->update([
             'content' => $validatedData['content'],
             // 'updated_at' => now(),
-            'likes' => 0,
         ]);
         return redirect(route('home'))->with('success', 'Idea edit Successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    // public function destroy(string $id)
-    // {
-    //     Idea::destroy($id);
-    //     return redirect(route('home'))->with('success','an idea has been deleted successfully!');
-    // }
     // Model binding 
     public function destroy(Idea $idea)
     {
         $idea->delete();
         return redirect(route('home'))->with('success', 'an idea has been deleted successfully!');
     }
+
+    public function like(Idea $idea){
+
+        $liker=auth()->user();
+        $liker->like()->attach($idea);
+        return redirect(route('home'));
+
+    }
+
+    public function dislike(Idea $idea){
+        $liker=auth()->user();
+        $liker->like()->detach($idea);
+        return redirect(route('home'));
+    }
+
+    
 }
