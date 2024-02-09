@@ -59,6 +59,8 @@ Route::post('/users/{user}/unfollow',[UserController::class,'unfollow'])->name('
 Route::get('user/feed',[UserController::class,'feed'])
 ->middleware('auth')->name('feed');
 
+// others
+Route::get('user/others',[UserController::class, 'others'])->name('users.others');
 
 // love Route
 Route::middleware('auth')->group(function(){

@@ -71,9 +71,14 @@
                 </div>
             </div>
         </div>
+        @if (auth()->id()== $user->id)
         <h4 class="mt-4"> Share yours ideas </h4>
         @include('layout.shared.submit-form')
-        <hr>
+        <hr> 
+        @endif
+        
+        
+       
         @forelse ($userIdeas as $idea)
             @include('idea.idea-card')
         @empty

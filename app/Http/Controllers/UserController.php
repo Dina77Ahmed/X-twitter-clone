@@ -103,4 +103,10 @@ class UserController extends Controller
         return view('user.feed',compact('ideasWithComments'));
     }
 
+    public function others(){
+        $user=auth()->user();
+        $otherFollowers=User::whereNotIn('id', $user->following->pluck('id'))->where('id', '!=', $user->id)->get();
+        // dd($otherFollowers);
+        return view('user.others',compact('otherFollowers'));
+    }
 }
